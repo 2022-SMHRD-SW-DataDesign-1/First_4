@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 import asciiArtSet.asciiArtSet_dalgo;
 import asciiArtSet.asciiArtSet_public;
+import javazoom.jl.player.MP3Player;
 import model.MemberDTO;
+import musicPlayer.musicCon;
 
 public class DalgonaGame {
 	
@@ -19,6 +21,8 @@ public class DalgonaGame {
 	asciiArtSet_dalgo frame = new asciiArtSet_dalgo();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
+	musicCon mc = new musicCon();
+	
 	public DalgonaGame() 
 	{
 		dalgo = new int[10][10];
@@ -30,7 +34,7 @@ public class DalgonaGame {
 		isRunning = true;
 	}
 
-	public int run_DalgonaGame(int score, MemberDTO dto) {
+	public int run_DalgonaGame(int score, MemberDTO dto, MP3Player mp3) {
 		// 달고나 전체의 출력
 		Scanner sc = new Scanner(System.in);
 		System.out.println("○△□○△□ 달고나 ○△□○△□ ");
@@ -47,6 +51,13 @@ public class DalgonaGame {
 		// user가 움직이는 좌표
 
 		long before = System.currentTimeMillis();
+		
+		if(mp3.isPlaying()) 
+		{
+			mp3.stop();
+			mc.playMusic(mp3, 5);
+		}
+		
 		while (isRunning) {
 			
 			dalgoSuccess = true;
@@ -154,9 +165,19 @@ public class DalgonaGame {
 			
 			System.out.println("성공하셨습니다 다음 게임으로 넘어가겠습니다");
 		} else {
+			if(mp3.isPlaying()) 
+			{
+				mp3.stop();
+				mc.playMusic(mp3, 11);
+			}
 			System.out.println(ascpub.gunShot);
 			ascpub.Sleep(1500);
 			
+			if(mp3.isPlaying()) 
+			{
+				mp3.stop();
+				mc.playMusic(mp3, 12);
+			}
 			System.out.println(ascpub.gameover);
 			ascpub.Sleep(3000);
 			

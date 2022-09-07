@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import asciiArtSet.asciiArtSet_public;
 import asciiArtSet.asciiArtSet_tug;
+import javazoom.jl.player.MP3Player;
 import model.MemberDAO;
 import model.MemberDTO;
+import musicPlayer.musicCon;
 
 public class tug_of_war {
 	
@@ -22,6 +24,8 @@ public class tug_of_war {
 	asciiArtSet_tug linePrint = new asciiArtSet_tug();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
+	musicCon mc = new musicCon();
+	
 	public tug_of_war() 
 	{
 		quizMax = 30;
@@ -31,7 +35,7 @@ public class tug_of_war {
 		quizNum = new int[quizMax];
 	}
 	
-	public int run_tug_of_war(int score, MemberDTO dto) {
+	public int run_tug_of_war(int score, MemberDTO dto, MP3Player mp3) {
 
 		Scanner sc = new Scanner(System.in);
 		
@@ -42,6 +46,12 @@ public class tug_of_war {
 		System.out.println(
 				"세번째 게임은 줄다리기 게임입니다.\n" + "일정 시간 마다 줄은 왼쪽으로 움직입니다.\n" + "당신은 제한시간내에 문제를 풀어 줄을 오른쪽으로 모두 끌어당기면 성공하게 됩니다\n"
 						+ "연속해서 퀴즈를 틀리게 되면 당신은 800km 밑으로 떨어지게 됩니다..\n" + "Good Luck\n");
+		
+		if(mp3.isPlaying()) 
+		{
+			mp3.stop();
+			mc.playMusic(mp3, 6);
+		}
 		
 		System.out.println(linePrint.line[life]);
 		
@@ -70,6 +80,7 @@ public class tug_of_war {
 			}
 			else
 			{
+				mc.playMusic(mp3, 7);
 				System.out.println("오답입니다\n");
 				life--;
 				score-=100;
@@ -78,6 +89,11 @@ public class tug_of_war {
 		}
 		
 		if (life == 0) {
+			if(mp3.isPlaying()) 
+			{
+				mp3.stop();
+				mc.playMusic(mp3, 8);
+			}
 			System.out.println(ascpub.gameover);
 			ascpub.Sleep(3000);
 			dto.setLife(0);

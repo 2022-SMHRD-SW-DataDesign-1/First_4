@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import asciiArtSet.asciiArtSet_bridge;
 import asciiArtSet.asciiArtSet_public;
+import javazoom.jl.player.MP3Player;
 import model.MemberDAO;
 import model.MemberDTO;
+import musicPlayer.musicCon;
 
 public class BridgeGame {
 	
@@ -16,6 +18,8 @@ public class BridgeGame {
 	MemberDAO dao = new MemberDAO();
 	asciiArtSet_bridge bridgePrint = new asciiArtSet_bridge();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
+	
+	musicCon mc = new musicCon();
 	
 	private String[][] words;
 	private String[] answer;
@@ -32,7 +36,7 @@ public class BridgeGame {
 		isRunning = true;
 	}
 
-	public int run_bridgeGame(int score, MemberDTO dto) {
+	public int run_bridgeGame(int score, MemberDTO dto, MP3Player mp3) {
 
 		System.out.println("네번째 게임은 다리 건너기 게임입니다. \n" + "맞춤법이 맞는 단어들을 입력해 다리를 건너면 성공입니다. \n"
 				+ "맞춤법이 틀린 당신은 한국에서 살아갈 수 없습니다... 안녕....\n" + "당신이 건너야 할 다리를 보여드리겠습니다. 총 7개의 발판을 건너야 합니다. \n"
@@ -45,6 +49,12 @@ public class BridgeGame {
 		System.out.println("맞춤법이 맞는 단어를 입력해주세요\n");
 		
 		int i =0;
+		
+		if(mp3.isPlaying()) 
+		{
+			mp3.stop();
+			mc.playMusic(mp3, 9);
+		}
 		
 		while (chance != 0 && isRunning) {
 			System.out.println();
@@ -68,6 +78,13 @@ public class BridgeGame {
 					break;
 				}
 			} else {
+				
+				if(mp3.isPlaying()) 
+				{
+					mp3.stop();
+					mc.playMusic(mp3, 10);
+				}
+				
 				System.out.println("수고 하셨습니다. 탈락.");
 				System.out.println(ascpub.gameover);
 				ascpub.Sleep(2000);

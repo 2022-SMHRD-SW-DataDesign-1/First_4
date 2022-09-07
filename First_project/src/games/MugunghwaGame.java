@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 import asciiArtSet.asciiArtSet_mugung;
 import asciiArtSet.asciiArtSet_public;
+import javazoom.jl.player.MP3Player;
 import model.MemberDTO;
+import musicPlayer.musicCon;
 
 public class MugunghwaGame
 {
@@ -19,6 +21,8 @@ public class MugunghwaGame
 	asciiArtSet_mugung doll_image = new asciiArtSet_mugung();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
+	musicCon mc = new musicCon();
+	
 	public MugunghwaGame()
 	{
 		isRun = true;
@@ -26,7 +30,7 @@ public class MugunghwaGame
 		MugungStatus = new int[len];
 	}
 	
-	public int run_MugunghwaGame(int score, MemberDTO dto) 
+	public int run_MugunghwaGame(int score, MemberDTO dto, MP3Player mp3) 
 	{
 		setMugungStat();
 		
@@ -39,16 +43,22 @@ public class MugunghwaGame
 		{
 			if(MugungStatus[i] == 0) 
 			{
+				if(!mp3.isPlaying())
+					mc.playMusic(mp3, 2);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
 				System.out.println(doll_image.doll_back);
 			}
 			else if(MugungStatus[i] == 1) 
 			{
+				if(!mp3.isPlaying())
+					mc.playMusic(mp3, 3);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
 				System.out.println(doll_image.doll_side);
 			}
 			else 
 			{
+				if(!mp3.isPlaying())
+					mc.playMusic(mp3, 4);
 				System.out.println(doll_image.doll_front);
 				ascpub.Sleep(2000);
 				if(isRun)
@@ -75,9 +85,19 @@ public class MugunghwaGame
 		}
 		else 
 		{
+			if(mp3.isPlaying()) 
+			{
+				mp3.stop();
+				mc.playMusic(mp3, 11);
+			}
 			System.out.println(ascpub.gunShot);
 			ascpub.Sleep(1500);
 			
+			if(mp3.isPlaying()) 
+			{
+				mp3.stop();
+				mc.playMusic(mp3, 12);
+			}
 			System.out.println(ascpub.gameover);
 			ascpub.Sleep(3000);
 			
@@ -93,7 +113,7 @@ public class MugunghwaGame
 	
 	public void setMugungStat() 
 	{
-		for (int i = 0; i < 5; i++) 
+		for (int i = 0; i < 4; i++) 
 		{
 			int ranIndex = r.nextInt(len/3)*3;
 			if (ranIndex != 0)
@@ -116,7 +136,6 @@ public class MugunghwaGame
 				MugungStatus[i]++;
 				for (int j = i - cnt + r.nextInt(cnt)/2+1; j < i; j++) 
 				{
-					System.out.println(i + " " + j + " " + cnt);
 					MugungStatus[j] = 1;
 				} 
 				cnt = 0;

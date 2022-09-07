@@ -9,8 +9,8 @@ public class MemberDTO {
 	private String id;
 	private String pw;
 	private String nickname;
-	private int score;
-	private int life;
+	private int score = 0;
+	private int life = 1;
 	
 	// 생성자, getter 메소드
 	
@@ -21,8 +21,6 @@ public class MemberDTO {
 		this.id = id;
 		this.pw = pw;
 		this.nickname = nickname;
-		score = 0;
-		life = 1;
 	}
 	   
 	// 회원정보 수정을 위한 dto

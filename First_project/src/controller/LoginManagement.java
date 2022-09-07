@@ -5,9 +5,11 @@ import games.BridgeGame;
 import games.DalgonaGame;
 import games.MugunghwaGame;
 import games.tug_of_war;
+import javazoom.jl.player.MP3Player;
 // Controller의 역할
 import model.MemberDAO;
 import model.MemberDTO;
+import musicPlayer.musicCon;
 
 // 사용자가 요청한 값이 있으면 controller에서 DAO로 연결
 // 조금더 view를 간단하게 , 사용자가 view에서 딱 입력과 결과값만을 보이게 하는 것 
@@ -20,12 +22,10 @@ public class LoginManagement {
 	// DTO에 접근할 수 있는 객체 생성
 	MemberDTO dto; // = new MemberDTO(id, pw); // 여러게 메소드있음 -> 선택해야함 , 구체적인 매개변수의 개수는 기능에 따라 다르게 주겟다
 	
+	musicCon mc = new musicCon();
+	
 	// Main 메소드에서 로그인을 실행 시
 	// 아이디와 비밀번호를 받아와 DAO 로 연결해주는 메소드 생성
-	tug_of_war tow = new tug_of_war();
-	DalgonaGame dal = new DalgonaGame();
-	BridgeGame brg = new BridgeGame();
-	MugunghwaGame mgh = new MugunghwaGame();
 	
 	// 서로서로 DAO와 사용자를 연결해주기 위해서는 메소드로 접근해야함
 	public void LoginCon(String id, String pw) {
@@ -39,10 +39,18 @@ public class LoginManagement {
 			System.out.println("로그인 성공");
 			
 			dto = new MemberDTO(id, pw);
+			dto.setScore(0);
+			dto.setLife(1);
 			
-			title_ani();
+			MP3Player player = new MP3Player();
+			if(player.isPlaying()) 
+			{
+				player.stop();
+				mc.playMusic(player, 1);
+			}
+			//title_ani();
 			
-			RunGames(dto);
+			RunGames(dto, player);
 			
 			InsertRankCon(dto);
 				
@@ -64,18 +72,27 @@ public class LoginManagement {
 		ascpub.Sleep(2000);
 	}
 	
-	public void RunGames(MemberDTO dto) 
+	public void RunGames(MemberDTO dto, MP3Player mp3) 
 	{
-		dto.setScore(mgh.run_MugunghwaGame(dto.getScore(), dto));
+		tug_of_war tow = new tug_of_war();
+		DalgonaGame dal = new DalgonaGame();
+		BridgeGame brg = new BridgeGame();
+		MugunghwaGame mgh = new MugunghwaGame();
+		
+		/* 줄거리 설명 추가
+		 * 줄거리 설명할때 bgm추가 해야함
+		 */
+		
+		dto.setScore(mgh.run_MugunghwaGame(dto.getScore(), dto, mp3));
 		
 		if(dto.getLife() != 0)
-			dto.setScore(dal.run_DalgonaGame(dto.getScore(), dto));
+			dto.setScore(dal.run_DalgonaGame(dto.getScore(), dto, mp3));
 		
 		if(dto.getLife() != 0)
-			dto.setScore(tow.run_tug_of_war(dto.getScore(), dto));
+			dto.setScore(tow.run_tug_of_war(dto.getScore(), dto, mp3));
 		
 		if(dto.getLife() != 0)
-			dto.setScore(brg.run_bridgeGame(dto.getScore(), dto));
+			dto.setScore(brg.run_bridgeGame(dto.getScore(), dto, mp3));
 	}
 	
 	public void InsertRankCon(MemberDTO dto) 
