@@ -53,11 +53,7 @@ public class tug_of_war {
 			{
 				System.out.println("줄다리기 게임을 통과하셨습니다 축하합니다");
 				System.out.println(ascpub.gameWin);
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				ascpub.Sleep(2000);
 				isRunning = false;
 				break;
 			}
@@ -83,11 +79,7 @@ public class tug_of_war {
 		
 		if (life == 0) {
 			System.out.println(ascpub.gameover);
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(3000);
 			dto.setLife(0);
 		}
 		

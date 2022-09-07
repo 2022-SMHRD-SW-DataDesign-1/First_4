@@ -64,21 +64,14 @@ public class BridgeGame {
 					System.out.println(bridgePrint.success[i++]); 
 					System.out.println("다리건너기를 완료 하였습니다. 고생하셨습니다");
 					System.out.println(ascpub.gameWin);
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					ascpub.Sleep(1000);
 					break;
 				}
 			} else {
 				System.out.println("수고 하셨습니다. 탈락.");
 				System.out.println(ascpub.gameover);
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				ascpub.Sleep(2000);
+				
 				System.out.println(bridgePrint.fail);
 				isRunning = false;
 				dto.setLife(0);

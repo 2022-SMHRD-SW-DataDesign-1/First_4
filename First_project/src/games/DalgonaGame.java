@@ -128,18 +128,10 @@ public class DalgonaGame {
 			System.out.println("달고나성공!");
 			
 			System.out.println(frame.dalgo_success);
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(2000);
 			
 			System.out.println(ascpub.gameWin);
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(3000);
 			
 			if(shapes == 1) 
 			{
@@ -163,17 +155,11 @@ public class DalgonaGame {
 			System.out.println("성공하셨습니다 다음 게임으로 넘어가겠습니다");
 		} else {
 			System.out.println(ascpub.gunShot);
-			try {
-				Thread.sleep(1500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(1500);
+			
 			System.out.println(ascpub.gameover);
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(3000);
+			
 			dto.setLife(0);
 		}
 		

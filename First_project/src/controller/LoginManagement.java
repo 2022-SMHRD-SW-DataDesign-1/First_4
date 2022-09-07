@@ -1,6 +1,7 @@
 package controller;
 
-		import games.BridgeGame;
+import asciiArtSet.asciiArtSet_public;
+import games.BridgeGame;
 import games.DalgonaGame;
 import games.MugunghwaGame;
 import games.tug_of_war;
@@ -39,6 +40,8 @@ public class LoginManagement {
 			
 			dto = new MemberDTO(id, pw);
 			
+			title_ani();
+			
 			RunGames(dto);
 			
 			InsertRankCon(dto);
@@ -48,13 +51,29 @@ public class LoginManagement {
 		}
 	}
 	
+	public void title_ani() 
+	{
+		asciiArtSet_public ascpub = new asciiArtSet_public();
+		
+		for (int i = 0; i < ascpub.title_animation.length; i++) {
+			System.out.println(ascpub.title_animation[i]); 
+			ascpub.Sleep(400);
+		}
+		
+		System.out.println(ascpub.gameTitle);
+		ascpub.Sleep(2000);
+	}
+	
 	public void RunGames(MemberDTO dto) 
 	{
 		dto.setScore(mgh.run_MugunghwaGame(dto.getScore(), dto));
+		
 		if(dto.getLife() != 0)
 			dto.setScore(dal.run_DalgonaGame(dto.getScore(), dto));
+		
 		if(dto.getLife() != 0)
 			dto.setScore(tow.run_tug_of_war(dto.getScore(), dto));
+		
 		if(dto.getLife() != 0)
 			dto.setScore(brg.run_bridgeGame(dto.getScore(), dto));
 	}

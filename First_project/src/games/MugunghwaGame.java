@@ -22,7 +22,7 @@ public class MugunghwaGame
 	public MugunghwaGame()
 	{
 		isRun = true;
-		len = 50;
+		len = 30;
 		MugungStatus = new int[len];
 	}
 	
@@ -50,11 +50,7 @@ public class MugunghwaGame
 			else 
 			{
 				System.out.println(doll_image.doll_front);
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				ascpub.Sleep(2000);
 				if(isRun)
 					break;
 				else
@@ -75,27 +71,16 @@ public class MugunghwaGame
 		{
 			System.out.println("게임에서 승리하셨습니다.");
 			System.out.println(ascpub.gameWin);
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(2000);
 		}
 		else 
 		{
 			System.out.println(ascpub.gunShot);
-			try {
-				Thread.sleep(1500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(1500);
 			
 			System.out.println(ascpub.gameover);
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			ascpub.Sleep(3000);
+			
 			dto.setLife(0);
 		}
 		long gameEnd = System.currentTimeMillis();
@@ -111,9 +96,12 @@ public class MugunghwaGame
 		for (int i = 0; i < 5; i++) 
 		{
 			int ranIndex = r.nextInt(len/3)*3;
-			if(MugungStatus[ranIndex] == 0)
-				MugungStatus[ranIndex] = 1;
-			else
+			if (ranIndex != 0)
+				if(MugungStatus[ranIndex] == 0)
+					MugungStatus[ranIndex] = 1;
+				else
+					i--;
+			else 
 				i--;
 		}
 		
@@ -127,7 +115,10 @@ public class MugunghwaGame
 			{
 				MugungStatus[i]++;
 				for (int j = i - cnt + r.nextInt(cnt)/2+1; j < i; j++) 
+				{
+					System.out.println(i + " " + j + " " + cnt);
 					MugungStatus[j] = 1;
+				} 
 				cnt = 0;
 			}
 		}

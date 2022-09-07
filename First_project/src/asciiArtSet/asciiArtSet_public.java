@@ -2,7 +2,15 @@ package asciiArtSet;
 
 public class asciiArtSet_public
 {
-	String [] animation = {"\r\n"
+	public void Sleep(int time) 
+	{
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	public String [] title_animation = {"\r\n"
 			+ "⠀⠀⠀⠀⠀⠀⣠⣴⣶⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
 			+ "⠀⠀⠀⠀⠀⣼⣿⠛⠉⠻⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
 			+ "⠀⠀⠀⠀⠀⣿⣿⠀⠀⢀⣿⡿⠀⠀⠀⣰⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"

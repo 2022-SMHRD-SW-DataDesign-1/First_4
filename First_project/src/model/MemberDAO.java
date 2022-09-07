@@ -210,7 +210,7 @@ public class MemberDAO {
  			connect();
 			
 			try {
-				String sql = "select * from user_rank where rownum <= 10 order by score desc";
+				String sql = "select i.nickname, r.score  from user_info i, user_rank r where i.user_id = r.user_id and rownum <= 10 order by score desc";
 				
 				psmt = conn.prepareStatement(sql);
 				
