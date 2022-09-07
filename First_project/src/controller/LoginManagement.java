@@ -1,6 +1,10 @@
 package controller;
 
-		// Controller의 역할
+		import games.BridgeGame;
+import games.DalgonaGame;
+import games.MugunghwaGame;
+import games.tug_of_war;
+// Controller의 역할
 import model.MemberDAO;
 import model.MemberDTO;
 
@@ -29,13 +33,23 @@ public class LoginManagement {
 		// 결과값 반환
 		if(result) { // cnt로도 바꿔보기
 			System.out.println("로그인 성공");
+			
+			tug_of_war tow = new tug_of_war();
+			DalgonaGame dal = new DalgonaGame();
+			BridgeGame brg = new BridgeGame();
+			MugunghwaGame mgh = new MugunghwaGame();
+			
+			//mgh.run_MugunghwaGame();
+			//dal.run_DalgonaGame();
+			//tow.run_tug_of_war();
+			brg.run_bridgeGame();
 		}else {
 			System.out.println("로그인 실패");
 		}
 	}
 	
-	public void InsertCon(String id, String pw, String name, int age) {
-		dto = new MemberDTO(id, pw, name, age); // 생성자 메소드
+	public void InsertCon(String id, String pw, String nickname) {
+		dto = new MemberDTO(id, pw, nickname); // 생성자 메소드
 		
 		int cnt = dao.insert(dto); // sql만들기
 		
@@ -59,7 +73,6 @@ public class LoginManagement {
 	}
 
 	public void SelectCon(String id) {
-
 		dao.select(id);	
 	}
 	
@@ -71,6 +84,5 @@ public class LoginManagement {
 			System.out.println("탈퇴 실패");
 		}
 	}
-	
 	
 }

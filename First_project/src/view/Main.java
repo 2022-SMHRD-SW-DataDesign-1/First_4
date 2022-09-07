@@ -3,75 +3,63 @@
 import java.util.Scanner;
 
 import controller.LoginManagement;
-import model.MemberDAO;
-import model.MemberDTO;
+//import model.MemberDAO;
+//import model.MemberDTO;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// ¸ğµç ±â´É¿¡¼­ »ç¿ëÇÒ ¼ö ÀÖµµ·Ï Àü¿ªº¯¼ö dao, dto »ı¼º
-		MemberDAO dao = new MemberDAO();  // ³ªÁß¿¡ ¿Ã¸®±â
-		MemberDTO dto = null;
+		// ëª¨ë“  ê¸°ëŠ¥ì—ì„œ ì‚¬ìš©í•  ìˆ˜ ìˆë„ë¡ ì „ì—­ë³€ìˆ˜ dao, dto ìƒì„±
+//		MemberDAO dao = new MemberDAO();  // ë‚˜ì¤‘ì— ì˜¬ë¦¬ê¸°
+//		MemberDTO dto = null;
 		
-		// controller¿¡ Á¢±ÙÇÒ ¼ö ÀÖ´Â °´Ã¼ »ı¼º
+		// controllerì— ì ‘ê·¼í•  ìˆ˜ ìˆëŠ” ê°ì²´ ìƒì„±
 		LoginManagement lm = new LoginManagement();
 		
 		Scanner sc = new Scanner(System.in);
 		
-		// ¾î¶² ÇüÅÂ·Î È­¸é ±¸¼ºÀ» ÇÒ °ÍÀÌ³Ä?
+		// ì–´ë–¤ í˜•íƒœë¡œ í™”ë©´ êµ¬ì„±ì„ í•  ê²ƒì´ëƒ?
 		System.out.println("====bigdata====");
 		
 		while(true) {
-			// ±¸ºĞ¼±
+			// êµ¬ë¶„ì„ 
 			System.out.println("=========================");
-			// ¸Ş´º Ãâ·Â
-			System.out.println("¸Ş´º¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-			System.out.print("[1]·Î±×ÀÎ  [2]È¸¿ø°¡ÀÔ  [3]Á¤º¸¼öÁ¤  [4]Á¶È¸  [5]È¸¿øÅ»Åğ  [6]Á¾·á >> ");
+			// ë©”ë‰´ ì¶œë ¥
+			System.out.println("ë©”ë‰´ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+			System.out.print("[1]ë¡œê·¸ì¸  [2]íšŒì›ê°€ì…  [3]ì •ë³´ìˆ˜ì •  [4]ì¡°íšŒ  [5]íšŒì›íƒˆí‡´  [6]ì¢…ë£Œ >> ");
 			int menu = sc.nextInt();
 			
 			if(menu == 1) {
-				//·Î±×ÀÎ ±â´É(DB ¿¬°á)
+				//ë¡œê·¸ì¸ ê¸°ëŠ¥(DB ì—°ê²°)
 				
-				System.out.print("¾ÆÀÌµğ : ");
+				System.out.print("ì•„ì´ë”” : ");
 				String id = sc.next();
-				System.out.print("ºñ¹Ğ¹øÈ£ : ");
+				System.out.print("ë¹„ë°€ë²ˆí˜¸ : ");
 				String pw = sc.next();
 				
-				// Controller¸¦ ÅëÇØ DAOÀÇ login()¿¬°á
-				//lm.LoginCon(id, pw);
-				
-				boolean result = dao.login(id, pw);
-				
-				if(result) 
-				{
-					System.out.println("·Î±×ÀÎ ¼º°ø");
-					// °ÔÀÓ ½ÇÇà
-				}
-				else
-					System.out.println("·Î±×ÀÎ ½ÇÆĞ");
+				// Controllerë¥¼ í†µí•´ DAOì˜ login()ì—°ê²°
+				lm.LoginCon(id, pw); // ê²Œì„ì‹¤í–‰ ë©”ì†Œë“œ
 //				
-//				// ·Î±×ÀÎ ±â´ÉÀº ÇöÀç °¡Áö°í ÀÖ´Â member Å×ÀÌºí¿¡ 
-//				// id, pw¿Í µ¿ÀÏÇÏ°Ô µé¾î°¡ ÀÖ´Â ³»¿ëÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö È®ÀÎ ÈÄ
-//				// °á°ú°ª ¹İÈ¯
-//				if(result) { // cnt·Îµµ ¹Ù²ãº¸±â
-//					System.out.println("·Î±×ÀÎ ¼º°ø");
+//				// ë¡œê·¸ì¸ ê¸°ëŠ¥ì€ í˜„ì¬ ê°€ì§€ê³  ìˆëŠ” member í…Œì´ë¸”ì— 
+//				// id, pwì™€ ë™ì¼í•˜ê²Œ ë“¤ì–´ê°€ ìˆëŠ” ë‚´ìš©ì´ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ í™•ì¸ í›„
+//				// ê²°ê³¼ê°’ ë°˜í™˜
+//				if(result) { // cntë¡œë„ ë°”ê¿”ë³´ê¸°
+//					System.out.println("ë¡œê·¸ì¸ ì„±ê³µ");
 //				}else {
-//					System.out.println("·Î±×ÀÎ ½ÇÆĞ");
+//					System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 //				}
 				
 			}else if(menu == 2) {
-				// È¸¿ø°¡ÀÔ ±â´É (DB ¿¬°á)
+				// íšŒì›ê°€ì… ê¸°ëŠ¥ (DB ì—°ê²°)
 				
-				// ¸Ş¼Òµå È£ÃâÇÏ±âÀ§ÇØ °´Ã¼ »ı¼º
+				// ë©”ì†Œë“œ í˜¸ì¶œí•˜ê¸°ìœ„í•´ ê°ì²´ ìƒì„±
 				
-				System.out.print("¾ÆÀÌµğ ÀÔ·Â : ");
+				System.out.print("ì•„ì´ë”” ì…ë ¥ : ");
 				String id = sc.next();
-				System.out.print("ºñ¹Ğ¹øÈ£ ÀÔ·Â : ");
+				System.out.print("ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ : ");
 				String pw = sc.next();
-				System.out.print("ÀÌ¸§ ÀÔ·Â : ");  
-				String name = sc.next();
-				System.out.print("³ªÀÌ ÀÔ·Â : ");
-				int age = sc.nextInt();
+				System.out.print("ë‹‰ë„¤ì„ ì…ë ¥ : ");  
+				String nickname = sc.next();
 				
 				// 1 - MemberDAO dao = new MemberDAO();
 				//	   MemberDTO dto = new MemberDTO(id, pw, name, age);
@@ -79,23 +67,23 @@ public class Main {
 				// if(cnt > 0){ ~
 				
 				
-				lm.InsertCon(id, pw, name, age);
+				lm.InsertCon(id, pw, nickname);
 				
-//				dto = new MemberDTO(id, pw, name, age); // »ı¼ºÀÚ ¸Ş¼Òµå
+//				dto = new MemberDTO(id, pw, name, age); // ìƒì„±ì ë©”ì†Œë“œ
 //				
-//				int cnt = dao.insert(dto); // sql¸¸µé±â
+//				int cnt = dao.insert(dto); // sqlë§Œë“¤ê¸°
 //				
 //				if(cnt > 0) {
-//					System.out.println("È¸¿ø°¡ÀÔ ¼º°ø");
+//					System.out.println("íšŒì›ê°€ì… ì„±ê³µ");
 //				}else {
-//					System.out.println("È¸¿ø°¡ÀÔ ½ÇÆĞ");
+//					System.out.println("íšŒì›ê°€ì… ì‹¤íŒ¨");
 //				}
 				
 			}else if(menu == 3) {
-				// Á¤º¸¼öÁ¤ ±â´É
-				System.out.print("¾ÆÀÌµğ ÀÔ·Â : ");
+				// ì •ë³´ìˆ˜ì • ê¸°ëŠ¥
+				System.out.print("ì•„ì´ë”” ì…ë ¥ : ");
 				String id = sc.next();
-				System.out.print("ºñ¹Ğ¹øÈ£ ¼öÁ¤ : ");
+				System.out.print("ë¹„ë°€ë²ˆí˜¸ ìˆ˜ì • : ");
 				String pw = sc.next();
 				
 				lm.UpdateCon(id, pw);
@@ -104,38 +92,38 @@ public class Main {
 //				int cnt = dao.update(dto); // 1
 //				
 //				if(cnt > 0) {
-//					System.out.println("È¸¿øÁ¤º¸ ¼öÁ¤¿Ï·á");
+//					System.out.println("íšŒì›ì •ë³´ ìˆ˜ì •ì™„ë£Œ");
 //				}else { 
-//					System.out.println("È¸¿øÁ¤º¸ ¼öÁ¤½ÇÆĞ");
+//					System.out.println("íšŒì›ì •ë³´ ìˆ˜ì •ì‹¤íŒ¨");
 //				}
 				
 			}else if(menu == 4){
-				// Á¤º¸Á¶È¸ ±â´É
+				// ì •ë³´ì¡°íšŒ ê¸°ëŠ¥
 				
-					// Æ¯Á¤ È¸¿ø¿¡ ´ëÇÏ¿© Á¶È¸ ÁøÇàÇÏ±â
-					// Á¶È¸ÇÒ ¾ÆÀÌµğ ÀÔ·Â¹Ş±â
-					System.out.print("Á¶È¸ÇÒ ¾ÆÀÌµğ : ");
+					// íŠ¹ì • íšŒì›ì— ëŒ€í•˜ì—¬ ì¡°íšŒ ì§„í–‰í•˜ê¸°
+					// ì¡°íšŒí•  ì•„ì´ë”” ì…ë ¥ë°›ê¸°
+					System.out.print("ì¡°íšŒí•  ì•„ì´ë”” : ");
 					String id = sc.next();
 					
-					lm.SelectCon(id);  // ÀÓÆ÷Æ® µÎ°³ Áö¿ì±â
+					lm.SelectCon(id);  // ì„í¬íŠ¸ ë‘ê°œ ì§€ìš°ê¸°
 //					dao.select(id);					
 				
 			}else if(menu == 5) {
-				// È¸¿øÅ»Åğ ±â´É
-				System.out.print("Å»ÅğÇÒ ¾ÆÀÌµğ : ");
+				// íšŒì›íƒˆí‡´ ê¸°ëŠ¥
+				System.out.print("íƒˆí‡´í•  ì•„ì´ë”” : ");
 				String id = sc.next();
 				
 				lm.DeleteCon(id);
 				
 			}else if(menu == 6) {
-				// Á¾·á±â´É
-				System.out.println("ÇÁ·Î±×·¥ Á¾·á");
+				// ì¢…ë£Œê¸°ëŠ¥
+				System.out.println("í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 				break;
 			}else {
-				System.out.println("Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+				System.out.println("ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 			}
 		}
-		System.out.println("ÇÁ·Î±×·¥ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù."); // 2. model(memberDTO)
+		System.out.println("í”„ë¡œê·¸ë¨ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."); // 2. model(memberDTO)
 		
 		sc.close();
 	}

@@ -1,42 +1,27 @@
-package 무궁화게임;
+package games;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class MugunghwaGame
 {
-	private static boolean isRun = true;
-	private static int len = 100;
-	private static int [] MugungStatus = new int[len];
+	Random r = new Random(); 
+	Scanner sc = new Scanner(System.in);
 	
-	public static void main(String[] args) 
+	private boolean isRun;
+	private int len;
+	private int [] MugungStatus;
+	
+	public MugunghwaGame()
 	{
-		Random r = new Random(); 
-		Scanner sc = new Scanner(System.in);
-		
-		for (int i = 0; i < 4; i++) 
-		{
-			int ranIndex = r.nextInt(len/3)*3;
-			if(MugungStatus[ranIndex] == 0)
-				MugungStatus[ranIndex] = 1;
-			else
-				i--;
-		}
-		
-		int cnt = 0;
-		
-		for (int i = 0; i < MugungStatus.length; i++) 
-		{
-			if(MugungStatus[i] == 0)
-				cnt++;
-			else if(MugungStatus[i] == 1) 
-			{
-				MugungStatus[i]++;
-				for (int j = i - cnt + r.nextInt(cnt) + 1; j < i; j++) 
-					MugungStatus[j] = 1;
-				cnt = 0;
-			}
-		}
+		isRun = true;
+		len = 50;
+		MugungStatus = new int[len];
+	}
+	
+	public void run_MugunghwaGame() 
+	{
+		setMugungStat();
 		
 		int percent = 0;
 		String run = "";
@@ -77,6 +62,33 @@ public class MugunghwaGame
 			System.out.println("게임 오버");
 		
 		sc.close();
+	}
+	
+	public void setMugungStat() 
+	{
+		for (int i = 0; i < 5; i++) 
+		{
+			int ranIndex = r.nextInt(len/3)*3;
+			if(MugungStatus[ranIndex] == 0)
+				MugungStatus[ranIndex] = 1;
+			else
+				i--;
+		}
+		
+		int cnt = 0;
+		
+		for (int i = 0; i < MugungStatus.length; i++) 
+		{
+			if(MugungStatus[i] == 0)
+				cnt++;
+			else if(MugungStatus[i] == 1) 
+			{
+				MugungStatus[i]++;
+				for (int j = i - cnt + r.nextInt(cnt)/2 + 1; j < i; j++) 
+					MugungStatus[j] = 1;
+				cnt = 0;
+			}
+		}
 	}
 
 }

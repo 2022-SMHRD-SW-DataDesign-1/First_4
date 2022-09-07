@@ -8,19 +8,17 @@ public class MemberDTO {
 	// 필드 필요(속성)
 	private String id;
 	private String pw;
-	private String name;
-	private int age;
+	private String nickname;
 	
 	// 생성자, getter 메소드
 	
 	// 유의미한 메소드는 아니고 이러한 기능을 수행하기 위해서 필요한 것, 항상 형태가 동일하기 때문에 직접 써도 되지만 단축키추천
 	// 생성자 만들기 : 우클릭 -> source -> generate constructor using fields
 	// 회원가입을 위한 dto
-	public MemberDTO(String id, String pw, String name, int age) {
+	public MemberDTO(String id, String pw, String nickname) {
 		this.id = id;
 		this.pw = pw;
-		this.name = name;
-		this.age = age;
+		this.nickname = nickname;
 	}
 	   
 	// 회원정보 수정을 위한 dto
@@ -46,24 +44,13 @@ public class MemberDTO {
 		this.pw = pw;
 	}
 
-	public String getName() {
-		return name;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-	
-	
-	
-	
 	
 }

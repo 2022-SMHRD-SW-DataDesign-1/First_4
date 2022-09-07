@@ -19,9 +19,9 @@ public class MemberDAO {
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				
-				String url = "jdbc:oracle:thin:@localhost:xe";
-				String db_id = "hr";
-				String db_pw = "hr";
+				String url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+				String db_id = "campus_g_0830_4";
+				String db_pw = "smhrd4";
 					
 				conn = DriverManager.getConnection(url, db_id, db_pw);
 				
@@ -61,7 +61,7 @@ public class MemberDAO {
 			
 			
 			try {
-				String sql = "select * From member where id = ? and pw = ?";
+				String sql = "select * From user_info where user_id = ? and user_pw = ?";
 				psmt = conn.prepareStatement(sql);
 				
 				psmt.setString(1, id);
@@ -95,16 +95,14 @@ public class MemberDAO {
 			try {
 				String id = dto.getId();   
 				String pw = dto.getPw();
-				String name = dto.getName();
-				int age = dto.getAge();
+				String nickname = dto.getNickname();
 				
-				String sql = "insert into member values(?, ?, ?, ?)"; // 원래는 'juhui', '5850', '이주희', 20
+				String sql = "insert into user_info values(?, ?, ?)"; // 원래는 'juhui', '5850', '이주희', 20
 				psmt = conn.prepareStatement(sql);
 				
 				psmt.setString(1, id);
 				psmt.setString(2, pw);
-				psmt.setString(3, name);
-				psmt.setInt(4, age);
+				psmt.setString(3, nickname);
 				
 				cnt = psmt.executeUpdate(); // 저장 후 Login View가서 제대로 되는지 코드 작성 후 실행
 				
@@ -142,7 +140,7 @@ public class MemberDAO {
 				String id = dto.getId();
 				String pw = dto.getPw();
 				
-				String sql = "update member set pw = ? where id = ?";
+				String sql = "update user_info set pw = ? where id = ?";
 				psmt = conn.prepareStatement(sql);
 				
 				psmt.setString(1, pw);
@@ -163,21 +161,20 @@ public class MemberDAO {
  			connect();
 			
 			try {
-				String sql = "select * from member";
+				String sql = "select * from user_info";
 				
 				psmt = conn.prepareStatement(sql);
 				
 				rs = psmt.executeQuery();
 				
 				// rs의 커서를 기준으로 다음에 데이터가 있는지 없는지 확인
-				System.out.println("ID\tPW\tNAME\tAGE");
+				System.out.println("ID\tPW\tNAME");
 				while(rs.next()) {
 					String id = rs.getString(1);
 					String pw = rs.getString(2);
-					String name = rs.getString(3);
-					int age = rs.getInt(4);
+					String nickname = rs.getString(3);
 					
-					System.out.printf("%s\t%s\t%s\t%d\n", id, pw, name, age);
+					System.out.printf("%s\t%s\t%s\n", id, pw, nickname);
 				}
 				
 			} catch (SQLException e) {
@@ -190,20 +187,19 @@ public class MemberDAO {
 			connect();
 			
 			try {
-				String sql = "select * from member where id = ?";
+				String sql = "select * from user_info where id = ?";
 				psmt = conn.prepareStatement(sql);				
 				psmt.setString(1, id);
 				
 				rs = psmt.executeQuery();
 				
-				System.out.println("ID\tPW\tNAME\tAGE");
+				System.out.println("ID\tPW\tNICKNAME");
 				while(rs.next()) {
 					String id2 = rs.getString(1);
 					String pw = rs.getString(2);
-					String name = rs.getString(3);
-					int age = rs.getInt(4);
+					String nickname = rs.getString(3);
 					
-					System.out.printf("%s\t%s\t%s\t%d\n", id2, pw, name, age);
+					System.out.printf("%s\t%s\t%s\n", id2, pw, nickname);
 				}
 				
 			} catch (SQLException e) {
@@ -212,12 +208,142 @@ public class MemberDAO {
 			
 		}
 		
+		public String selectQuizQuestion(int quizNum) {
+			connect();
+			
+			String question = null;
+			
+			try {
+				String sql = "select * from quiz where quiznum = ?";
+				psmt = conn.prepareStatement(sql);				
+				psmt.setInt(1, quizNum);
+				
+				rs = psmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					question = rs.getString(2);
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return question;
+			
+		}
+		
+		public String selectQuizAnswer(int quizNum) {
+			connect();
+			
+			String answer = null;
+			
+			try {
+				String sql = "select * from quiz where quiznum = ?";
+				psmt = conn.prepareStatement(sql);				
+				psmt.setInt(1, quizNum);
+				
+				rs = psmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					answer = rs.getString(3);
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return answer;
+			
+		}
+		
+		public String selectQuizType(int quizNum) {
+			connect();
+			
+			String type = null;
+			
+			try {
+				String sql = "select * from quiz where quiznum = ?";
+				psmt = conn.prepareStatement(sql);				
+				psmt.setInt(1, quizNum);
+				
+				rs = psmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					type = rs.getString(4);
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return type;
+			
+		}
+		
+		public String selectWordWrongAnswer(int wordNum) {
+			connect();
+			
+			String wrongAnswer = null;
+			
+			try {
+				String sql = "select * from words where wordnum = ?";
+				psmt = conn.prepareStatement(sql);				
+				psmt.setInt(1, wordNum);
+				
+				rs = psmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					wrongAnswer = rs.getString(2);
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return wrongAnswer;
+			
+		}
+		
+		public String selectWordAnswer(int wordNum) {
+			connect();
+			
+			String answer = null;
+			
+			try {
+				String sql = "select * from words where wordnum = ?";
+				psmt = conn.prepareStatement(sql);				
+				psmt.setInt(1, wordNum);
+				
+				rs = psmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					answer = rs.getString(3);
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return answer;
+			
+		}
+		
 		public int delete(String id) {
 			int cnt = 0;
 			connect();
 			
 			try {
-				String sql = "delete from member where id = ?";
+				String sql = "delete from user_info where id = ?";
 				psmt = conn.prepareStatement(sql);				
 				psmt.setString(1, id);
 				
