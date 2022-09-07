@@ -30,12 +30,12 @@ public class MugunghwaGame
 		for(int i = 0; i < MugungStatus.length; i++, percent++)
 		{
 			if(MugungStatus[i] == 0)
-				System.out.println("¹«±ÃÈ­");
+				System.out.println("ë¬´ê¶í™”");
 			else if(MugungStatus[i] == 1)
-				System.out.println("¹«±ÃÈ­ ²ÉÀÌ~");
+				System.out.println("ë¬´ê¶í™” ê½ƒì´~");
 			else 
 			{
-				System.out.println("¹«±ÃÈ­ ²ÉÀÌ ÇÇ¾ú½À´Ï´Ù!");
+				System.out.println("ë¬´ê¶í™” ê½ƒì´ í”¼ì—ˆìŠµë‹ˆë‹¤!");
 				/*try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -57,11 +57,10 @@ public class MugunghwaGame
 		}
 
 		if(percent == MugungStatus.length)
-			System.out.println("°ÔÀÓ¿¡¼­ ½Â¸®ÇÏ¼Ì½À´Ï´Ù.");
+			System.out.println("ê²Œìž„ì—ì„œ ìŠ¹ë¦¬í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		else
-			System.out.println("°ÔÀÓ ¿À¹ö");
+			System.out.println("ê²Œìž„ ì˜¤ë²„");
 		
-		sc.close();
 	}
 	
 	public void setMugungStat() 

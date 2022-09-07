@@ -125,8 +125,6 @@ public class DalgonaGame {
 			System.out.println("게임 오버");
 		}
 		
-		sc.close();
-
 	}
 	
 	public void setUserPoint(int shapes)

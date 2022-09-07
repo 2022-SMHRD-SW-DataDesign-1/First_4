@@ -14,6 +14,7 @@ public class BridgeGame {
 	asciiArtSet_bridge bridgePrint = new asciiArtSet_bridge();
 	
 	private String[][] words;
+	private String[] answer;
 	private int[] wordNum;
 	private int chance;
 	private boolean isRunning;
@@ -21,6 +22,7 @@ public class BridgeGame {
 	public BridgeGame() 
 	{
 		words = new String[7][2];
+		answer = new String[7];
 		wordNum = new int[7];
 		chance = 7;
 		isRunning = true;
@@ -44,10 +46,11 @@ public class BridgeGame {
 			System.out.println();
 			System.out.println("문제 입니다 >> " + words[chance - 1][0] + " or " + words[chance - 1][1]);
 			System.out.print("단어를 정확히 입력해주세요 >>");
-			String answer = sc.next();
+			
+			String input = sc.next();
 
 			System.out.println();
-			if (words[chance - 1][1].equals(answer)) {
+			if (answer[chance - 1].equals(input)) {
 				if(chance != 1) {
 					System.out.println(bridgePrint.success[i++]); 
 					System.out.println("정답입니다.한 칸 전진하였습니다.\n");
@@ -66,10 +69,6 @@ public class BridgeGame {
 
 		}
 		
-		System.out.println("다음 게임을 넘어가시려면 Enter를 눌러주세요");
-		
-		sc.close();
-
 	}
 	
 	public void setWords() 
@@ -89,6 +88,7 @@ public class BridgeGame {
 		{
 			int prontback = rd.nextInt(1);
 			words[i][prontback] = dao.selectWordAnswer(wordNum[i]);
+			answer[i] = dao.selectWordAnswer(wordNum[i]);
 			
 			for (int j = 0; j < words[i].length; j++)
 				if(words[i][j] == null)

@@ -39,9 +39,9 @@ public class LoginManagement {
 			BridgeGame brg = new BridgeGame();
 			MugunghwaGame mgh = new MugunghwaGame();
 			
-			//mgh.run_MugunghwaGame();
-			//dal.run_DalgonaGame();
-			//tow.run_tug_of_war();
+			mgh.run_MugunghwaGame();
+			dal.run_DalgonaGame();
+			tow.run_tug_of_war();
 			brg.run_bridgeGame();
 		}else {
 			System.out.println("로그인 실패");
