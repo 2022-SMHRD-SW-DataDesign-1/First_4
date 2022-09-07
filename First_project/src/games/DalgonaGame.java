@@ -3,6 +3,8 @@ package games;
 import java.util.Scanner;
 
 import asciiArtSet.asciiArtSet_dalgo;
+import asciiArtSet.asciiArtSet_public;
+import model.MemberDTO;
 
 public class DalgonaGame {
 	
@@ -15,6 +17,7 @@ public class DalgonaGame {
 	private boolean isRunning;
 	
 	asciiArtSet_dalgo frame = new asciiArtSet_dalgo();
+	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
 	public DalgonaGame() 
 	{
@@ -27,7 +30,7 @@ public class DalgonaGame {
 		isRunning = true;
 	}
 
-	public int run_DalgonaGame(int score) {
+	public int run_DalgonaGame(int score, MemberDTO dto) {
 		// 달고나 전체의 출력
 		Scanner sc = new Scanner(System.in);
 		System.out.println("○△□○△□ 달고나 ○△□○△□ ");
@@ -36,6 +39,7 @@ public class DalgonaGame {
 
 		System.out.println("달고나뽑기 원하시는 모양을 선택하세요");
 		System.out.print("[1] ㅁ (난이도 : 하)  [2] ◇ (난이도 : 중)  [3] ♡ (난이도 : 상) >>");
+		System.out.println(frame.dalgo_select);
 		int shapes = sc.nextInt();
 		
 		setUserPoint(shapes);
@@ -102,6 +106,7 @@ public class DalgonaGame {
 			
 			if(life == 0) {
 				System.out.println("life가 모두 소비되어 실패히셨습니다!");
+				dalgoSuccess = false;
 				break;
 			}
 			
@@ -121,6 +126,21 @@ public class DalgonaGame {
 		
 		if (dalgoSuccess) {
 			System.out.println("달고나성공!");
+			
+			System.out.println(frame.dalgo_success);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			System.out.println(ascpub.gameWin);
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 			if(shapes == 1) 
 			{
 				score += 100;
@@ -142,7 +162,19 @@ public class DalgonaGame {
 			
 			System.out.println("성공하셨습니다 다음 게임으로 넘어가겠습니다");
 		} else {
-			System.out.println("게임 오버");
+			System.out.println(ascpub.gunShot);
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println(ascpub.gameover);
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			dto.setLife(0);
 		}
 		
 		return score;

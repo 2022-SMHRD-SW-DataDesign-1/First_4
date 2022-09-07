@@ -21,6 +21,10 @@ public class LoginManagement {
 	
 	// Main 메소드에서 로그인을 실행 시
 	// 아이디와 비밀번호를 받아와 DAO 로 연결해주는 메소드 생성
+	tug_of_war tow = new tug_of_war();
+	DalgonaGame dal = new DalgonaGame();
+	BridgeGame brg = new BridgeGame();
+	MugunghwaGame mgh = new MugunghwaGame();
 	
 	// 서로서로 DAO와 사용자를 연결해주기 위해서는 메소드로 접근해야함
 	public void LoginCon(String id, String pw) {
@@ -33,27 +37,35 @@ public class LoginManagement {
 		if(result) { // cnt로도 바꿔보기
 			System.out.println("로그인 성공");
 			
-			tug_of_war tow = new tug_of_war();
-			DalgonaGame dal = new DalgonaGame();
-			BridgeGame brg = new BridgeGame();
-			MugunghwaGame mgh = new MugunghwaGame();
-			
 			dto = new MemberDTO(id, pw);
 			
-			//dto.setScore(mgh.run_MugunghwaGame(dto.getScore()));
-			//dto.setScore(dal.run_DalgonaGame(dto.getScore()));
-			//dto.setScore(tow.run_tug_of_war(dto.getScore()));
-			dto.setScore(brg.run_bridgeGame(dto.getScore()));
+			RunGames(dto);
 			
-			int cnt = dao.insertRank(dto);
-			if(cnt > 0)
-				System.out.println("rank등록 성공");
-			else
-				System.out.println("rank등록 실패");
+			InsertRankCon(dto);
 				
 		}else {
 			System.out.println("로그인 실패");
 		}
+	}
+	
+	public void RunGames(MemberDTO dto) 
+	{
+		dto.setScore(mgh.run_MugunghwaGame(dto.getScore(), dto));
+		if(dto.getLife() != 0)
+			dto.setScore(dal.run_DalgonaGame(dto.getScore(), dto));
+		if(dto.getLife() != 0)
+			dto.setScore(tow.run_tug_of_war(dto.getScore(), dto));
+		if(dto.getLife() != 0)
+			dto.setScore(brg.run_bridgeGame(dto.getScore(), dto));
+	}
+	
+	public void InsertRankCon(MemberDTO dto) 
+	{
+		int cnt = dao.insertRank(dto);
+		if(cnt > 0)
+			System.out.println("rank등록 성공");
+		else
+			System.out.println("rank등록 실패");
 	}
 	
 	public void InsertCon(String id, String pw, String nickname) {

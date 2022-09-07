@@ -3,8 +3,10 @@ package games;
 import java.util.Random;
 import java.util.Scanner;
 
+import asciiArtSet.asciiArtSet_public;
 import asciiArtSet.asciiArtSet_tug;
 import model.MemberDAO;
+import model.MemberDTO;
 
 public class tug_of_war {
 	
@@ -17,6 +19,9 @@ public class tug_of_war {
 	private Random rd = new Random();
 	private MemberDAO dao = new MemberDAO();
 	
+	asciiArtSet_tug linePrint = new asciiArtSet_tug();
+	asciiArtSet_public ascpub = new asciiArtSet_public();
+	
 	public tug_of_war() 
 	{
 		quizMax = 30;
@@ -26,11 +31,10 @@ public class tug_of_war {
 		quizNum = new int[quizMax];
 	}
 	
-	public int run_tug_of_war(int score) {
+	public int run_tug_of_war(int score, MemberDTO dto) {
 
 		Scanner sc = new Scanner(System.in);
 		
-		asciiArtSet_tug linePrint = new asciiArtSet_tug();
 		
 		int life = 3;
 		boolean isRunning = true;
@@ -48,6 +52,12 @@ public class tug_of_war {
 			if (life > 5)
 			{
 				System.out.println("줄다리기 게임을 통과하셨습니다 축하합니다");
+				System.out.println(ascpub.gameWin);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				isRunning = false;
 				break;
 			}
@@ -72,7 +82,13 @@ public class tug_of_war {
 		}
 		
 		if (life == 0) {
-			System.out.println("GAME OVER");
+			System.out.println(ascpub.gameover);
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			dto.setLife(0);
 		}
 		
 		return score;

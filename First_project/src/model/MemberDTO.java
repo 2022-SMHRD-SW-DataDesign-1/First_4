@@ -10,6 +10,7 @@ public class MemberDTO {
 	private String pw;
 	private String nickname;
 	private int score;
+	private int life;
 	
 	// 생성자, getter 메소드
 	
@@ -21,6 +22,7 @@ public class MemberDTO {
 		this.pw = pw;
 		this.nickname = nickname;
 		score = 0;
+		life = 1;
 	}
 	   
 	// 회원정보 수정을 위한 dto
@@ -61,6 +63,13 @@ public class MemberDTO {
 	public void setScore(int score) {
 		this.score = score;
 	}
+	
+	public int getLife() {
+		return life;
+	}
 
+	public void setLife(int life) {
+		this.life = life;
+	}
 	
 }

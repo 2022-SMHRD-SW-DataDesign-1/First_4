@@ -4,14 +4,18 @@ import java.util.Random;
 import java.util.Scanner;
 
 import asciiArtSet.asciiArtSet_bridge;
+import asciiArtSet.asciiArtSet_public;
 import model.MemberDAO;
+import model.MemberDTO;
 
 public class BridgeGame {
 	
 	Scanner sc = new Scanner(System.in);
 	Random rd = new Random();
+	
 	MemberDAO dao = new MemberDAO();
 	asciiArtSet_bridge bridgePrint = new asciiArtSet_bridge();
+	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
 	private String[][] words;
 	private String[] answer;
@@ -28,13 +32,13 @@ public class BridgeGame {
 		isRunning = true;
 	}
 
-	public int run_bridgeGame(int score) {
+	public int run_bridgeGame(int score, MemberDTO dto) {
 
 		System.out.println("네번째 게임은 다리 건너기 게임입니다. \n" + "맞춤법이 맞는 단어들을 입력해 다리를 건너면 성공입니다. \n"
 				+ "맞춤법이 틀린 당신은 한국에서 살아갈 수 없습니다... 안녕....\n" + "당신이 건너야 할 다리를 보여드리겠습니다. 총 7개의 발판을 건너야 합니다. \n"
 				+ "Good Luck\n");
 
-		System.out.println(bridgePrint.basic);
+		System.out.println(bridgePrint.bridge_basic);
 
 		setWords();
 
@@ -59,13 +63,25 @@ public class BridgeGame {
 				}else {
 					System.out.println(bridgePrint.success[i++]); 
 					System.out.println("다리건너기를 완료 하였습니다. 고생하셨습니다");
+					System.out.println(ascpub.gameWin);
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					break;
 				}
 			} else {
 				System.out.println("수고 하셨습니다. 탈락.");
+				System.out.println(ascpub.gameover);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				System.out.println(bridgePrint.fail);
 				isRunning = false;
-
+				dto.setLife(0);
 			}
 
 		}
