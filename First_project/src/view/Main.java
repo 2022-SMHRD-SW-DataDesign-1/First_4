@@ -26,7 +26,7 @@ public class Main {
 			System.out.println("=========================");
 			// 메뉴 출력
 			System.out.println("메뉴를 입력하세요");
-			System.out.print("[1]로그인  [2]회원가입  [3]정보수정  [4]조회  [5]회원탈퇴  [6]종료 >> ");
+			System.out.print("[1]로그인  [2]회원가입  [3]정보수정  [4]랭킹조회  [5]회원탈퇴  [6]종료 >> ");
 			int menu = sc.nextInt();
 			
 			if(menu == 1) {
@@ -102,10 +102,8 @@ public class Main {
 				
 					// 특정 회원에 대하여 조회 진행하기
 					// 조회할 아이디 입력받기
-					System.out.print("조회할 아이디 : ");
-					String id = sc.next();
-					
-					lm.SelectCon(id);  // 임포트 두개 지우기
+				
+					lm.SelectRankCon();  // 임포트 두개 지우기
 //					dao.select(id);					
 				
 			}else if(menu == 5) {

@@ -27,7 +27,7 @@ public class DalgonaGame {
 		isRunning = true;
 	}
 
-	public void run_DalgonaGame() {
+	public int run_DalgonaGame(int score) {
 		// 달고나 전체의 출력
 		Scanner sc = new Scanner(System.in);
 		System.out.println("○△□○△□ 달고나 ○△□○△□ ");
@@ -117,13 +117,35 @@ public class DalgonaGame {
 			if(dalgoSuccess)
 				break;
 		}
+		long gameEnd = System.currentTimeMillis();
 		
 		if (dalgoSuccess) {
 			System.out.println("달고나성공!");
+			if(shapes == 1) 
+			{
+				score += 100;
+				if(time - (gameEnd - before) > 0)
+					score += time - (gameEnd - before);
+			}
+			else if(shapes == 2) 
+			{
+				score += 300;
+				if(time - (gameEnd - before) > 0)
+					score += time - (gameEnd - before);
+			}
+			else if(shapes == 3) 
+			{
+				score += 500;
+				if(time - (gameEnd - before) > 0)
+					score += time - (gameEnd - before);
+			}
+			
 			System.out.println("성공하셨습니다 다음 게임으로 넘어가겠습니다");
 		} else {
 			System.out.println("게임 오버");
 		}
+		
+		return score;
 		
 	}
 	

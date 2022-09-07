@@ -28,7 +28,7 @@ public class BridgeGame {
 		isRunning = true;
 	}
 
-	public void run_bridgeGame() {
+	public int run_bridgeGame(int score) {
 
 		System.out.println("네번째 게임은 다리 건너기 게임입니다. \n" + "맞춤법이 맞는 단어들을 입력해 다리를 건너면 성공입니다. \n"
 				+ "맞춤법이 틀린 당신은 한국에서 살아갈 수 없습니다... 안녕....\n" + "당신이 건너야 할 다리를 보여드리겠습니다. 총 7개의 발판을 건너야 합니다. \n"
@@ -54,6 +54,7 @@ public class BridgeGame {
 				if(chance != 1) {
 					System.out.println(bridgePrint.success[i++]); 
 					System.out.println("정답입니다.한 칸 전진하였습니다.\n");
+					score += 150;
 					chance--;
 				}else {
 					System.out.println(bridgePrint.success[i++]); 
@@ -68,6 +69,8 @@ public class BridgeGame {
 			}
 
 		}
+		
+		return score;
 		
 	}
 	

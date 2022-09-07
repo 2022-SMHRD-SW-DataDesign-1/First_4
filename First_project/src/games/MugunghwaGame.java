@@ -19,7 +19,7 @@ public class MugunghwaGame
 		MugungStatus = new int[len];
 	}
 	
-	public void run_MugunghwaGame() 
+	public int run_MugunghwaGame(int score) 
 	{
 		setMugungStat();
 		
@@ -27,6 +27,7 @@ public class MugunghwaGame
 		String run = "";
 		String stop = " ";
 		
+		long gameStart = System.currentTimeMillis();
 		for(int i = 0; i < MugungStatus.length; i++, percent++)
 		{
 			if(MugungStatus[i] == 0)
@@ -45,6 +46,7 @@ public class MugunghwaGame
 					break;
 				else
 					isRun = true;
+				score += 100;
 			}
 			
 			String input = sc.nextLine();
@@ -60,7 +62,12 @@ public class MugunghwaGame
 			System.out.println("게임에서 승리하셨습니다.");
 		else
 			System.out.println("게임 오버");
+		long gameEnd = System.currentTimeMillis();
 		
+		if(gameEnd - gameStart > 0)
+			score += (30000 - (gameEnd - gameStart))/10;
+		
+		return score;
 	}
 	
 	public void setMugungStat() 
@@ -83,7 +90,7 @@ public class MugunghwaGame
 			else if(MugungStatus[i] == 1) 
 			{
 				MugungStatus[i]++;
-				for (int j = i - cnt + r.nextInt(cnt)/2 + 1; j < i; j++) 
+				for (int j = i - cnt + r.nextInt(cnt)/2 + 2; j < i; j++) 
 					MugungStatus[j] = 1;
 				cnt = 0;
 			}

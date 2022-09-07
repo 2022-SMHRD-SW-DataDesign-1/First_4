@@ -19,7 +19,6 @@ public class LoginManagement {
 	// DTO에 접근할 수 있는 객체 생성
 	MemberDTO dto; // = new MemberDTO(id, pw); // 여러게 메소드있음 -> 선택해야함 , 구체적인 매개변수의 개수는 기능에 따라 다르게 주겟다
 	
-
 	// Main 메소드에서 로그인을 실행 시
 	// 아이디와 비밀번호를 받아와 DAO 로 연결해주는 메소드 생성
 	
@@ -39,10 +38,19 @@ public class LoginManagement {
 			BridgeGame brg = new BridgeGame();
 			MugunghwaGame mgh = new MugunghwaGame();
 			
-			mgh.run_MugunghwaGame();
-			dal.run_DalgonaGame();
-			tow.run_tug_of_war();
-			brg.run_bridgeGame();
+			dto = new MemberDTO(id, pw);
+			
+			//dto.setScore(mgh.run_MugunghwaGame(dto.getScore()));
+			//dto.setScore(dal.run_DalgonaGame(dto.getScore()));
+			//dto.setScore(tow.run_tug_of_war(dto.getScore()));
+			dto.setScore(brg.run_bridgeGame(dto.getScore()));
+			
+			int cnt = dao.insertRank(dto);
+			if(cnt > 0)
+				System.out.println("rank등록 성공");
+			else
+				System.out.println("rank등록 실패");
+				
 		}else {
 			System.out.println("로그인 실패");
 		}
@@ -74,6 +82,9 @@ public class LoginManagement {
 
 	public void SelectCon(String id) {
 		dao.select(id);	
+	}
+	public void SelectRankCon() {
+		dao.rownumRankAll();
 	}
 	
 	public void DeleteCon(String id) {

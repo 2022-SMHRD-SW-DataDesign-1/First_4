@@ -132,6 +132,30 @@ public class MemberDAO {
 			return cnt;	// 초반에		
 		}
 		
+		public int insertRank(MemberDTO dto) { // void -> int
+			int cnt = 0;// 초반에(insert는 행의 값이 변경 int 타입으로 값 리턴)
+			
+			// 1. 동적로딩(선행작업 필요)
+			connect();
+			
+			try {
+				String id = dto.getId();   
+				int score = dto.getScore();
+				
+				String sql = "insert into user_rank values(?, ?)";
+				psmt = conn.prepareStatement(sql);
+				
+				psmt.setString(1, id);
+				psmt.setInt(2, score);
+				
+				cnt = psmt.executeUpdate(); 
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return cnt;
+		}
+		
 		public int update(MemberDTO dto) {
 			int cnt = 0; // 얘도 전역변수로 만들어 버리기
 			connect();
@@ -175,6 +199,31 @@ public class MemberDAO {
 					String nickname = rs.getString(3);
 					
 					System.out.printf("%s\t%s\t%s\n", id, pw, nickname);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void rownumRankAll() {
+ 			connect();
+			
+			try {
+				String sql = "select * from user_rank where rownum <= 10 order by score";
+				
+				psmt = conn.prepareStatement(sql);
+				
+				rs = psmt.executeQuery();
+				
+				// rs의 커서를 기준으로 다음에 데이터가 있는지 없는지 확인
+				System.out.println("Rank\tID\tSCORE");
+				int rank = 1;
+				while(rs.next()) {
+					String id = rs.getString(1);
+					int score = rs.getInt(2);
+					
+					System.out.printf("%d\t%s\t%d\n", rank++, id, score);
 				}
 				
 			} catch (SQLException e) {

@@ -26,7 +26,7 @@ public class tug_of_war {
 		quizNum = new int[quizMax];
 	}
 	
-	public void run_tug_of_war() {
+	public int run_tug_of_war(int score) {
 
 		Scanner sc = new Scanner(System.in);
 		
@@ -59,12 +59,14 @@ public class tug_of_war {
 			{
 				System.out.println("정답입니다\n");
 				life++;
+				score+=100;
 				System.out.println(linePrint.line[life]);
 			}
 			else
 			{
 				System.out.println("오답입니다\n");
 				life--;
+				score-=100;
 				System.out.println(linePrint.line[life]);
 			}
 		}
@@ -73,8 +75,8 @@ public class tug_of_war {
 			System.out.println("GAME OVER");
 		}
 		
-		sc.close();
-
+		return score;
+		
 	}
 	
 	public void setQuiz() 
