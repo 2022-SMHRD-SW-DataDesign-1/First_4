@@ -4,7 +4,7 @@ import javazoom.jl.player.MP3Player;
 
 public class musicCon 
 {
-	private String path = "C:\\Users\\smhrd\\Desktop\\bgm_최종\\";
+	private String path = ".\\music\\";
 	
 	public String [] musicNameSet = {"1.시작.mp3", // 0
 								"2.메인화면_공용.mp3",//1
