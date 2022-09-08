@@ -54,7 +54,8 @@ public class MugunghwaGame
 			{
 				if(mp3.isPlaying())
 					mp3.stop();
-				mc.playMusic(mp3, 2);
+				if(!mp3.isPlaying())
+					mc.playMusic(mp3, 2);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
 				System.out.println(doll_image.doll_back);
 				System.out.println("[Enter : 전진] [\" \" + Enter : 멈추기]");
@@ -63,7 +64,8 @@ public class MugunghwaGame
 			{
 				if(mp3.isPlaying())
 					mp3.stop();
-				mc.playMusic(mp3, 3);
+				if(!mp3.isPlaying())
+					mc.playMusic(mp3, 3);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
 				System.out.println(doll_image.doll_side);
 				System.out.println("[Enter : 전진] [\" \" + Enter : 멈추기]");
@@ -72,7 +74,8 @@ public class MugunghwaGame
 			{
 				if(mp3.isPlaying())
 					mp3.stop();
-				mc.playMusic(mp3, 4);
+				if(!mp3.isPlaying())
+					mc.playMusic(mp3, 4);
 				System.out.println(doll_image.doll_front);
 				if(isRun)
 					System.out.println("잘가!");

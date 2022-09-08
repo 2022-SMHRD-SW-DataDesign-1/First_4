@@ -1,6 +1,5 @@
 package controller;
 
-import asciiArtSet.asciiArtSet_public;
 import games.BridgeGame;
 import games.DalgonaGame;
 import games.MugunghwaGame;
@@ -45,9 +44,6 @@ public class LoginManagement {
 			dto.setLife(1);
 			
 			MP3Player player = new MP3Player();
-			if(player.isPlaying()) 
-				player.stop();
-			mc.playMusic(player, 1);
 			
 			RunGames(dto, player);
 			
@@ -72,14 +68,14 @@ public class LoginManagement {
 		 * 줄거리 설명할때 bgm추가 해야함
 		 */
 		
-		itr.intro();
+//		itr.intro(mp3);
 		
-		dto.setScore(mgh.run_MugunghwaGame(dto.getScore(), dto, mp3));
-		
-		if(dto.getLife() != 0)
-			dto.setScore(dal.run_DalgonaGame(dto.getScore(), dto, mp3));
-		
-		if(dto.getLife() != 0)
+//		dto.setScore(mgh.run_MugunghwaGame(dto.getScore(), dto, mp3));
+//		
+//		if(dto.getLife() != 0)
+//			dto.setScore(dal.run_DalgonaGame(dto.getScore(), dto, mp3));
+//		
+		if(dto.getLife() != 0) 
 			dto.setScore(tow.run_tug_of_war(dto.getScore(), dto, mp3));
 		
 		if(dto.getLife() != 0)

@@ -1,19 +1,24 @@
 package games;
 
 import asciiArtSet.asciiArtSet_public;
+import javazoom.jl.player.MP3Player;
+import musicPlayer.musicCon;
 
 public class storyIntro
 {
 
 	asciiArtSet_public ascpub = new asciiArtSet_public();
+	musicCon mc = new musicCon();
 	
-	public void intro() 
+	public void intro(MP3Player mp3) 
 	{
+		if(mp3.isPlaying()) 
+			mp3.stop();
+		mc.playMusic(mp3, 1);
 		for (int i = 0; i < ascpub.title_animation.length; i++) {
 			System.out.println(ascpub.title_animation[i]); 
 			ascpub.Sleep(400);
 		}
-		
 		System.out.println(ascpub.gameTitle);
 		System.out.println("JDBC에 쫓기는 스마트인재개발원의 사람들이 서바이벌 게임에 뛰어든다.\n"
 						 + "대기업 취업조건으로 새로운 삶을 시작하기 위해.\n"

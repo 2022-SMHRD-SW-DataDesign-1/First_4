@@ -25,6 +25,7 @@ public class tug_of_war {
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
 	musicCon mc = new musicCon();
+	MP3Player mp2 = new MP3Player();
 	
 	public tug_of_war() 
 	{
@@ -79,7 +80,8 @@ public class tug_of_war {
 			}
 			else
 			{
-				mc.playMusic(mp3, 7);
+				if(life > 1)
+					mc.playMusic(mp2, 7);
 				System.out.println("오답입니다\n");
 				life--;
 				score-=100;
@@ -88,9 +90,9 @@ public class tug_of_war {
 		}
 		
 		if (life == 0) {
-			if(mp3.isPlaying()) 
-				mp3.stop();
-			mc.playMusic(mp3, 8);
+			if(mp2.isPlaying()) 
+				mp2.stop();
+			mc.playMusic(mp2, 8);
 			
 			System.out.println(ascpub.gameover);
 			ascpub.Sleep(3000);
