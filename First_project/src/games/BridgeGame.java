@@ -16,7 +16,7 @@ public class BridgeGame {
 	Random rd = new Random();
 	
 	MemberDAO dao = new MemberDAO();
-	asciiArtSet_bridge bridgePrint = new asciiArtSet_bridge();
+	asciiArtSet_bridge ascbri = new asciiArtSet_bridge();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
 	musicCon mc = new musicCon();
@@ -44,7 +44,7 @@ public class BridgeGame {
 						 + "당신이 건너야 할 다리를 보여드리겠습니다. 총 7개의 발판을 건너야 합니다. \n"
 						 + "Good Luck\n");
 
-		System.out.println(bridgePrint.bridge_basic);
+		System.out.println(ascbri.bridge_basic);
 		ascpub.Sleep(1000);
 
 		setWords();
@@ -67,12 +67,12 @@ public class BridgeGame {
 			System.out.println();
 			if (answer[chance - 1].equals(input)) {
 				if(chance != 1) {
-					System.out.println(bridgePrint.success[i++]); 
+					System.out.println(ascbri.success[i++]); 
 					System.out.println("정답입니다.한 칸 전진하였습니다.\n");
 					score += 150;
 					chance--;
 				}else {
-					System.out.println(bridgePrint.success[i++]); 
+					System.out.println(ascbri.success[i++]); 
 					System.out.println("다리건너기를 완료 하였습니다. 고생하셨습니다");
 					System.out.println(ascpub.gameWin);
 					ascpub.Sleep(1000);

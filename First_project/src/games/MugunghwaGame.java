@@ -18,7 +18,7 @@ public class MugunghwaGame
 	private int len;
 	private int [] MugungStatus;
 	
-	asciiArtSet_mugung doll_image = new asciiArtSet_mugung();
+	asciiArtSet_mugung ascmug = new asciiArtSet_mugung();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
 	musicCon mc = new musicCon();
@@ -57,20 +57,20 @@ public class MugunghwaGame
 			{
 				mc.playMusic(mp3, 2);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
-				System.out.println(doll_image.doll_back);
+				System.out.println(ascmug.doll_back);
 				System.out.println("[Enter : 전진] [\" \" + Enter : 멈추기]");
 			}
 			else if(MugungStatus[i] == 1) 
 			{
 				mc.playMusic(mp3, 3);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
-				System.out.println(doll_image.doll_side);
+				System.out.println(ascmug.doll_side);
 				System.out.println("[Enter : 전진] [\" \" + Enter : 멈추기]");
 			}
 			else 
 			{
 				mc.playMusic(mp3, 4);
-				System.out.println(doll_image.doll_front);
+				System.out.println(ascmug.doll_front);
 				if(isRun)
 					System.out.println("잘가!");
 				else

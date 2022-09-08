@@ -21,7 +21,7 @@ public class tug_of_war {
 	private Random rd = new Random();
 	private MemberDAO dao = new MemberDAO();
 	
-	asciiArtSet_tug linePrint = new asciiArtSet_tug();
+	asciiArtSet_tug asctug = new asciiArtSet_tug();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
 	musicCon mc = new musicCon();
@@ -53,7 +53,7 @@ public class tug_of_war {
 			mp3.stop();
 		mc.playMusic(mp3, 6);
 		
-		System.out.println(linePrint.line[life]);
+		System.out.println(asctug.line[life]);
 		
 		setQuiz();
 		
@@ -76,7 +76,7 @@ public class tug_of_war {
 				System.out.println("정답입니다\n");
 				life++;
 				score+=100;
-				System.out.println(linePrint.line[life]);
+				System.out.println(asctug.line[life]);
 			}
 			else
 			{
@@ -85,7 +85,7 @@ public class tug_of_war {
 				System.out.println("오답입니다\n");
 				life--;
 				score-=100;
-				System.out.println(linePrint.line[life]);
+				System.out.println(asctug.line[life]);
 			}
 		}
 		

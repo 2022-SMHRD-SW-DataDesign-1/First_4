@@ -18,7 +18,7 @@ public class DalgonaGame {
 	private boolean dalgoSuccess;
 	private boolean isRunning;
 	
-	asciiArtSet_dalgo frame = new asciiArtSet_dalgo();
+	asciiArtSet_dalgo ascdal = new asciiArtSet_dalgo();
 	asciiArtSet_public ascpub = new asciiArtSet_public();
 	
 	musicCon mc = new musicCon();
@@ -45,7 +45,7 @@ public class DalgonaGame {
 
 		System.out.println("달고나뽑기 원하시는 모양을 선택하세요");
 		System.out.print("[1] ㅁ (난이도 : 하)  [2] ♡ (난이도 : 중)  [3] ◇ (난이도 : 상) >>");
-		System.out.println(frame.dalgo_select);
+		System.out.println(ascdal.dalgo_select);
 		int shapes = sc.nextInt();
 		
 		setUserPoint(shapes);
@@ -65,11 +65,11 @@ public class DalgonaGame {
 			for (int i = 0; i < dalgo.length; i++) {
 				for (int j = 0; j < dalgo[i].length; j++) {
 					if (dalgo[i][j] == 0)
-						System.out.print(frame.shape[0] + " ");
+						System.out.print(ascdal.shape[0] + " ");
 					else if (dalgo[i][j] == 1)
-						System.out.print(frame.shape[1] + " ");
+						System.out.print(ascdal.shape[1] + " ");
 					else if (dalgo[i][j] == 2)
-						System.out.print(frame.shape[2] + " ");
+						System.out.print(ascdal.shape[2] + " ");
 				}
 				System.out.println();
 			}
@@ -144,7 +144,7 @@ public class DalgonaGame {
 		if (dalgoSuccess) {
 			System.out.println("달고나성공!");
 			
-			System.out.println(frame.dalgo_success);
+			System.out.println(ascdal.dalgo_success);
 			ascpub.Sleep(2000);
 			
 			System.out.println(ascpub.gameWin);
@@ -201,21 +201,21 @@ public class DalgonaGame {
 	{
 		if(shapes == 1) 
 		{
-			dalgo = frame.dalgo1;
+			dalgo = ascdal.dalgo1;
 			user_x = 1;
 			user_y = 1;
 			time = 15000;
 		}
 		else if(shapes == 2) 
 		{
-			dalgo = frame.dalgo2;
+			dalgo = ascdal.dalgo2;
 			user_x = 1;
 			user_y = 2;
 			time = 20000;
 		}
 		else if(shapes == 3) 
 		{
-			dalgo = frame.dalgo3;
+			dalgo = ascdal.dalgo3;
 			user_x = 4;
 			user_y = 0;
 			time = 25000;
