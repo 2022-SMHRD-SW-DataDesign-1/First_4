@@ -4,6 +4,7 @@ import asciiArtSet.asciiArtSet_public;
 import games.BridgeGame;
 import games.DalgonaGame;
 import games.MugunghwaGame;
+import games.storyIntro;
 import games.tug_of_war;
 import javazoom.jl.player.MP3Player;
 // Controller의 역할
@@ -44,11 +45,8 @@ public class LoginManagement {
 			
 			MP3Player player = new MP3Player();
 			if(player.isPlaying()) 
-			{
 				player.stop();
-				mc.playMusic(player, 1);
-			}
-			//title_ani();
+			mc.playMusic(player, 2);
 			
 			RunGames(dto, player);
 			
@@ -59,21 +57,10 @@ public class LoginManagement {
 		}
 	}
 	
-	public void title_ani() 
-	{
-		asciiArtSet_public ascpub = new asciiArtSet_public();
-		
-		for (int i = 0; i < ascpub.title_animation.length; i++) {
-			System.out.println(ascpub.title_animation[i]); 
-			ascpub.Sleep(400);
-		}
-		
-		System.out.println(ascpub.gameTitle);
-		ascpub.Sleep(2000);
-	}
 	
 	public void RunGames(MemberDTO dto, MP3Player mp3) 
 	{
+		storyIntro itr = new storyIntro();
 		tug_of_war tow = new tug_of_war();
 		DalgonaGame dal = new DalgonaGame();
 		BridgeGame brg = new BridgeGame();
@@ -82,6 +69,8 @@ public class LoginManagement {
 		/* 줄거리 설명 추가
 		 * 줄거리 설명할때 bgm추가 해야함
 		 */
+		
+		itr.intro();
 		
 		dto.setScore(mgh.run_MugunghwaGame(dto.getScore(), dto, mp3));
 		
@@ -93,6 +82,13 @@ public class LoginManagement {
 		
 		if(dto.getLife() != 0)
 			dto.setScore(brg.run_bridgeGame(dto.getScore(), dto, mp3));
+		
+		if(dto.getLife() != 0) 
+		{
+			if(mp3.isPlaying())
+				mp3.stop();
+			mc.playMusic(mp3, 13);
+		}
 	}
 	
 	public void InsertRankCon(MemberDTO dto) 

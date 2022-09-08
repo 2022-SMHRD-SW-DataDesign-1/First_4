@@ -8,7 +8,7 @@ public class musicCon
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\2.메인화면_공용.mp3",//1
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\3-1.무궁화.mp3",//2
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\3-2.무궁화꽃이.mp3",//3
-								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\3-3.무궁화꽃이피었습니다.mp3",//4
+								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\3-3.피었습니다.mp3",//4
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\4.달고나bgm.mp3",//5
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\5-1.줄다리기.mp3",//6
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\5-2.줄다리기한문제틀릴때마다.mp3",//7

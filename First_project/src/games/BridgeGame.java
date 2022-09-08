@@ -38,11 +38,14 @@ public class BridgeGame {
 
 	public int run_bridgeGame(int score, MemberDTO dto, MP3Player mp3) {
 
-		System.out.println("네번째 게임은 다리 건너기 게임입니다. \n" + "맞춤법이 맞는 단어들을 입력해 다리를 건너면 성공입니다. \n"
-				+ "맞춤법이 틀린 당신은 한국에서 살아갈 수 없습니다... 안녕....\n" + "당신이 건너야 할 다리를 보여드리겠습니다. 총 7개의 발판을 건너야 합니다. \n"
-				+ "Good Luck\n");
+		System.out.println("네번째 게임은 징검다리 건너기 게임입니다. \n"
+						 + "맞춤법이 맞는 단어들을 입력해 다리를 건너면 성공입니다. \n"
+						 + "맞춤법이 틀린 당신은 한국에서 살아갈 수 없습니다... 안녕....\n"
+						 + "당신이 건너야 할 다리를 보여드리겠습니다. 총 7개의 발판을 건너야 합니다. \n"
+						 + "Good Luck\n");
 
 		System.out.println(bridgePrint.bridge_basic);
+		ascpub.Sleep(1000);
 
 		setWords();
 
@@ -51,10 +54,8 @@ public class BridgeGame {
 		int i =0;
 		
 		if(mp3.isPlaying()) 
-		{
 			mp3.stop();
-			mc.playMusic(mp3, 9);
-		}
+		mc.playMusic(mp3, 9);
 		
 		while (chance != 0 && isRunning) {
 			System.out.println();
@@ -80,16 +81,14 @@ public class BridgeGame {
 			} else {
 				
 				if(mp3.isPlaying()) 
-				{
 					mp3.stop();
-					mc.playMusic(mp3, 10);
-				}
+				mc.playMusic(mp3, 10);
 				
-				System.out.println("수고 하셨습니다. 탈락.");
+				System.out.println("수고 하셨습니다.");
+				System.out.println("[탈락]");
 				System.out.println(ascpub.gameover);
 				ascpub.Sleep(2000);
 				
-				System.out.println(bridgePrint.fail);
 				isRunning = false;
 				dto.setLife(0);
 			}

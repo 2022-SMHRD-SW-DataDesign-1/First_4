@@ -38,15 +38,25 @@ public class MugunghwaGame
 		String run = "";
 		String stop = " ";
 		
+		System.out.println("첫번째 게임을 시작합니다.");
+		System.out.println("첫번째 게임은 \"무궁화 꽃이 피었습니다\" 입니다\n");
+		System.out.println("[조작법]");
+		System.out.println("Enter를 누르면 앞으로 전진을 하고 Space(\" \") + Enter를 누르면 멈춤상태가 됩니다.");
+		System.out.println("인형이 당신을 볼 때 당신은 멈춤상태여야만 합니다.");
+		System.out.println("Enter를 눌러 진행해주세요.");
+		
 		long gameStart = System.currentTimeMillis();
 		for(int i = 0; i < MugungStatus.length; i++, percent++)
 		{
+			String input = sc.nextLine();
+			
 			if(MugungStatus[i] == 0) 
 			{
 				if(!mp3.isPlaying())
 					mc.playMusic(mp3, 2);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
 				System.out.println(doll_image.doll_back);
+				System.out.println("[Enter : 전진] [\" \" + Enter : 멈추기]");
 			}
 			else if(MugungStatus[i] == 1) 
 			{
@@ -54,12 +64,17 @@ public class MugunghwaGame
 					mc.playMusic(mp3, 3);
 				System.out.println(percent * (100/len) + "%에 도달했습니다.");
 				System.out.println(doll_image.doll_side);
+				System.out.println("[Enter : 전진] [\" \" + Enter : 멈추기]");
 			}
 			else 
 			{
 				if(!mp3.isPlaying())
 					mc.playMusic(mp3, 4);
 				System.out.println(doll_image.doll_front);
+				if(!isRun)
+					System.out.println("잘가!");
+				else
+					System.out.println("쳇!");
 				ascpub.Sleep(2000);
 				if(isRun)
 					break;
@@ -67,8 +82,6 @@ public class MugunghwaGame
 					isRun = true;
 				score += 100;
 			}
-			
-			String input = sc.nextLine();
 			
 			if(stop.equals(input) && isRun)
 				isRun = false;
@@ -79,25 +92,23 @@ public class MugunghwaGame
 
 		if(percent == MugungStatus.length) 
 		{
-			System.out.println("게임에서 승리하셨습니다.");
+			System.out.println("첫번째 게임에서 승리하셨습니다.");
 			System.out.println(ascpub.gameWin);
+			System.out.println("다음게임으로 넘어가겠습니다.");
 			ascpub.Sleep(2000);
 		}
 		else 
 		{
+			System.out.println("[탈락]");
 			if(mp3.isPlaying()) 
-			{
 				mp3.stop();
-				mc.playMusic(mp3, 11);
-			}
+			mc.playMusic(mp3, 11);
 			System.out.println(ascpub.gunShot);
 			ascpub.Sleep(1500);
 			
 			if(mp3.isPlaying()) 
-			{
 				mp3.stop();
-				mc.playMusic(mp3, 12);
-			}
+			mc.playMusic(mp3, 12);
 			System.out.println(ascpub.gameover);
 			ascpub.Sleep(3000);
 			

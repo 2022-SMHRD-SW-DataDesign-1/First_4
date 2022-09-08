@@ -37,12 +37,14 @@ public class DalgonaGame {
 	public int run_DalgonaGame(int score, MemberDTO dto, MP3Player mp3) {
 		// 달고나 전체의 출력
 		Scanner sc = new Scanner(System.in);
-		System.out.println("○△□○△□ 달고나 ○△□○△□ ");
-		System.out.println("달고나게임을 시작하겟습니다 \r\n" + "달고나 게임은 제한시간내에 원하시는 모양을 방향키입력후 지정된루트로 이동을 하여야 성공하는 게임입니다\r\n"
-				+ "방향키 입력중 지정된루트에 도달하지 못하면 실패를 하니 게임을 즐겨주시기 바랍니다 ");
+		
+		System.out.println("두번째 게임을 시작합니다.");
+		System.out.println("○△□○△□ 달고나 ○△□○△□");
+		System.out.println("달고나 게임은 제한시간내에 원하시는 모양을 w, a, s, d를 입력 후 지정된루트로 이동을 하여야 성공하는 게임입니다.\n"
+						 + "제한시간 내에 달고나를 완성하지 못하면 탈락하니 신중히 게임을 즐겨주시기 바랍니다.");
 
 		System.out.println("달고나뽑기 원하시는 모양을 선택하세요");
-		System.out.print("[1] ㅁ (난이도 : 하)  [2] ◇ (난이도 : 중)  [3] ♡ (난이도 : 상) >>");
+		System.out.print("[1] ㅁ (난이도 : 하)  [2] ♡ (난이도 : 중)  [3] ◇ (난이도 : 상) >>");
 		System.out.println(frame.dalgo_select);
 		int shapes = sc.nextInt();
 		
@@ -53,10 +55,8 @@ public class DalgonaGame {
 		long before = System.currentTimeMillis();
 		
 		if(mp3.isPlaying()) 
-		{
 			mp3.stop();
-			mc.playMusic(mp3, 5);
-		}
+		mc.playMusic(mp3, 5);
 		
 		while (isRunning) {
 			
@@ -74,6 +74,8 @@ public class DalgonaGame {
 				System.out.println();
 			}
 			
+			System.out.println("■모양을 따라가세요.(경로이탈 2회시 자동으로 탈락됩니다)");
+			System.out.println("[a : 왼쪽] [w : 위] [d : 오른쪽] [s : 아래]");
 			System.out.print("좌표를 움직이시요>>");
 			String move = sc.next();
 			
@@ -116,7 +118,7 @@ public class DalgonaGame {
 				break;
 			
 			if(life == 0) {
-				System.out.println("life가 모두 소비되어 실패히셨습니다!");
+				System.out.println("달고나가 깨졌습니다.");
 				dalgoSuccess = false;
 				break;
 			}
@@ -165,19 +167,19 @@ public class DalgonaGame {
 			
 			System.out.println("성공하셨습니다 다음 게임으로 넘어가겠습니다");
 		} else {
+			System.out.println("[탈락]");
+			
 			if(mp3.isPlaying()) 
-			{
 				mp3.stop();
-				mc.playMusic(mp3, 11);
-			}
+			mc.playMusic(mp3, 11);
+			
 			System.out.println(ascpub.gunShot);
 			ascpub.Sleep(1500);
 			
 			if(mp3.isPlaying()) 
-			{
 				mp3.stop();
-				mc.playMusic(mp3, 12);
-			}
+			mc.playMusic(mp3, 12);
+			
 			System.out.println(ascpub.gameover);
 			ascpub.Sleep(3000);
 			

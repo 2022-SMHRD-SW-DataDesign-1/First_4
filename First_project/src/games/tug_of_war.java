@@ -43,15 +43,14 @@ public class tug_of_war {
 		int life = 3;
 		boolean isRunning = true;
 
-		System.out.println(
-				"세번째 게임은 줄다리기 게임입니다.\n" + "일정 시간 마다 줄은 왼쪽으로 움직입니다.\n" + "당신은 제한시간내에 문제를 풀어 줄을 오른쪽으로 모두 끌어당기면 성공하게 됩니다\n"
-						+ "연속해서 퀴즈를 틀리게 되면 당신은 800km 밑으로 떨어지게 됩니다..\n" + "Good Luck\n");
+		System.out.println("세번째 게임은 줄다리기 게임입니다.\n"
+						 + "당신은 문제를 풀어 줄을 오른쪽으로 모두 끌어당기면 성공하게 됩니다.\n"
+						 + "연속해서 퀴즈를 틀리게 되면 당신은 회사에서 떨어지게 됩니다.\n"
+						 + "Good Luck\n");
 		
 		if(mp3.isPlaying()) 
-		{
 			mp3.stop();
-			mc.playMusic(mp3, 6);
-		}
+		mc.playMusic(mp3, 6);
 		
 		System.out.println(linePrint.line[life]);
 		
@@ -90,10 +89,9 @@ public class tug_of_war {
 		
 		if (life == 0) {
 			if(mp3.isPlaying()) 
-			{
 				mp3.stop();
-				mc.playMusic(mp3, 8);
-			}
+			mc.playMusic(mp3, 8);
+			
 			System.out.println(ascpub.gameover);
 			ascpub.Sleep(3000);
 			dto.setLife(0);
