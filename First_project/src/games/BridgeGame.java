@@ -95,6 +95,9 @@ public class BridgeGame {
 
 		}
 		
+		if(mp3.isPlaying()) 
+			mp3.stop();
+		
 		return score;
 		
 	}

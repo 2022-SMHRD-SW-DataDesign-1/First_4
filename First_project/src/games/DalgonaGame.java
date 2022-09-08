@@ -114,8 +114,12 @@ public class DalgonaGame {
 			}
 			
 			long now = System.currentTimeMillis();
-			if (now - before > time)
+			if (now - before > time) 
+			{
+				System.out.println("시간초과");
+				dalgoSuccess = false;
 				break;
+			}
 			
 			if(life == 0) {
 				System.out.println("달고나가 깨졌습니다.");
@@ -185,6 +189,9 @@ public class DalgonaGame {
 			
 			dto.setLife(0);
 		}
+		
+		if(mp3.isPlaying()) 
+			mp3.stop();
 		
 		return score;
 		

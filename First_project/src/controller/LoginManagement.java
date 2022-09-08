@@ -4,6 +4,7 @@ import asciiArtSet.asciiArtSet_public;
 import games.BridgeGame;
 import games.DalgonaGame;
 import games.MugunghwaGame;
+import games.gameEnding;
 import games.storyIntro;
 import games.tug_of_war;
 import javazoom.jl.player.MP3Player;
@@ -46,7 +47,7 @@ public class LoginManagement {
 			MP3Player player = new MP3Player();
 			if(player.isPlaying()) 
 				player.stop();
-			mc.playMusic(player, 2);
+			mc.playMusic(player, 1);
 			
 			RunGames(dto, player);
 			
@@ -65,6 +66,7 @@ public class LoginManagement {
 		DalgonaGame dal = new DalgonaGame();
 		BridgeGame brg = new BridgeGame();
 		MugunghwaGame mgh = new MugunghwaGame();
+		gameEnding ge = new gameEnding();
 		
 		/* 줄거리 설명 추가
 		 * 줄거리 설명할때 bgm추가 해야함
@@ -83,12 +85,8 @@ public class LoginManagement {
 		if(dto.getLife() != 0)
 			dto.setScore(brg.run_bridgeGame(dto.getScore(), dto, mp3));
 		
-		if(dto.getLife() != 0) 
-		{
-			if(mp3.isPlaying())
-				mp3.stop();
-			mc.playMusic(mp3, 13);
-		}
+		if(dto.getLife() != 0)
+			ge.ending(mp3);
 	}
 	
 	public void InsertRankCon(MemberDTO dto) 

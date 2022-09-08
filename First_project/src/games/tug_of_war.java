@@ -97,6 +97,9 @@ public class tug_of_war {
 			dto.setLife(0);
 		}
 		
+		if(mp3.isPlaying()) 
+			mp3.stop();
+		
 		return score;
 		
 	}

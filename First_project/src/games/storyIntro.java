@@ -20,7 +20,7 @@ public class storyIntro
 						 + "하지만 모두가 승자가 될 순 없는 법.\n"
 						 + "탈락하는 이들은 치명적인 결과를 각오해야 한다.");
 		System.out.println("총 4개의 스테이지를 이겨내야 대기업에 취직할 수 있는 자격을 갖게된다.");
-		System.out.println("당신의 목숨은 1개이니 침착하게 스테이지를 진행해 주시기 바랍니다.");
+		System.out.println("당신의 목숨은 1개이니 침착하게 스테이지를 진행해 주시기 바랍니다.\n");
 		ascpub.Sleep(4000);
 	}
 	
