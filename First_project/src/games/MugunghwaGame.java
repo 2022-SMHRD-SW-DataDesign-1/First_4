@@ -26,7 +26,7 @@ public class MugunghwaGame
 	public MugunghwaGame()
 	{
 		isRun = true;
-		len = 30;
+		len = 10;
 		MugungStatus = new int[len];
 	}
 	
@@ -127,7 +127,7 @@ public class MugunghwaGame
 	
 	public void setMugungStat() 
 	{
-		for (int i = 0; i < 4; i++) 
+		for (int i = 0; i < 2; i++) 
 		{
 			int ranIndex = r.nextInt(len/3)*3;
 			if (ranIndex != 0)
