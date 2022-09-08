@@ -17,7 +17,8 @@ public class musicCon
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\6-2.징검다리탈락시.mp3",//10
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\7-1.게임실패(총)_공용.mp3",//11
 								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\7-2.최종탈락시_공용.mp3",//12
-								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\8.우승시.mp3"//13
+								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\8.우승시.mp3",//13
+								"C:\\Users\\smhrd\\Desktop\\bgm_최종\\3-3.무궁화꽃이피었습니다.mp3"//14
 								};
 	
 	public void playMusic(MP3Player p, int pathNum) 
